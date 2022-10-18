@@ -1,13 +1,5 @@
 const customDonationInput = document.getElementById("custom-donation");
-const donationBtnsArr = [200,100,50,30,10,5];
-let donationsObjs = [];
-
-class Donate {
-   constructor( amountDonated, clicked = false){
-      this.amountDonated = amountDonated;
-      this.clicked = clicked;
-   }
-}
+const donationBtnElements = document.getElementsByClassName("donation-btn");
 
 $(".once-btn").click(function(){
    $(".monthly-btn").removeClass("btn-success");
@@ -24,19 +16,10 @@ $(".monthly-btn").click(function(){
 })
 
 
-donationBtnsArr.map(donation =>{
-   let donateBtn = document.getElementById(donation);
-   let _donation = new Donate( donateBtn.value);
-   return donationsObjs.push(_donation);
-})
-
-
-for(let i = 0; i < donationBtnsArr.length; i ++){
-   let donateBtn = document.getElementById(donationBtnsArr[i]);
-   donationBtnsArr[i] === donateBtn.value?console.log(donationBtnsArr[i])
-   :console.log("no match")
-   donateBtn.addEventListener("click",function(e){
+for(let i = 0; i < donationBtnElements.length; i++){
+   donationBtnElements[i].addEventListener("click", function(e){
       e.preventDefault();
-      
+      customDonationInput.value = donationBtnElements[i].value;
    })
 }
+
